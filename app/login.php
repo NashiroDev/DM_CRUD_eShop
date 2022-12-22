@@ -52,11 +52,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="POST">
                         <div class="group">
                             <label for="email">Email : </label>
-                            <input type="email" name="email">
+                            <input type="email" name="email" required>
                         </div>
                         <div class="group">
                             <label for="password">Mot de passe : </label>
-                            <input type="password" name="password">
+                            <input type="password" name="password" required>
                         </div>
                         <button type="submit" class="submit-button">Se connecter</button>
                     </form>

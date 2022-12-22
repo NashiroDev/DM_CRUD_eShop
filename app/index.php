@@ -4,12 +4,8 @@ include_once('./conf/variables.php');
 include_once('./requests/products.php');
 
 $listOfArray = getAll();
-var_dump($_SESSION);
-        
-// Toggle boutons ?
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

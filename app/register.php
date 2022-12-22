@@ -61,17 +61,17 @@ if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['email'])
                         <form action="<?= $_SERVER['REQUEST_URI']; ?>" class="form form-register" method="POST" enctype="multipart/form-data">
                             <div class="group">
                                 <label for="prenom">Prenom :</label>
-                                <input type="text" name="prenom" placeholder="Jacky">
+                                <input type="text" name="prenom" placeholder="Jacky" required>
                                 <label for="nom">Nom :</label>
-                                <input type="text" name="nom" placeholder="Chan">
+                                <input type="text" name="nom" placeholder="Chan" required>
                             </div>
                             <div class="group">
                                 <label for="email">Adresse email :</label>
-                                <input type="email" name="email" placeholder="jacky.chan@kick.com">
+                                <input type="email" name="email" placeholder="jacky.chan@kick.com" required>
                             </div>
                             <div class="group">
                                 <label for="password">Mot de passe</label>
-                                <input type="password" name="password" placeholder="Ilov3M4rti4l4rt5">
+                                <input type="password" name="password" placeholder="Ilov3M4rti4l4rt5" required>
                             </div>
                             <input type="hidden" name='token' value="<?= $_SESSION['token'] ?>">
                             <button type="submit" class="submit-button">Valider le formulaire</button>

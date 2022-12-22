@@ -73,6 +73,9 @@ ol {
   display: inline-block;
   font-family: inherit;
 }
+input {
+    border-radius: var(--border-radius);
+}
 .container {
     width: 90%;
     margin: auto;
@@ -190,11 +193,6 @@ ol {
     background-color: var(--primary);
     transition: 0.27s ease-in-out;
 }
-/* .cardlist {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-} */
 .ts,
 .pu,
 .pa,
@@ -259,7 +257,7 @@ ol {
     color: var(--secondary);
 }
 
-/* Register.php */
+/* Register.php/login.php */
 .notify {
     width: 80%;
     margin: auto;
@@ -316,4 +314,91 @@ ol {
     color: var(--primary);
     border: 0.782px solid var(--primary);
     cursor: pointer;
+}
+
+/* admin */
+.manage-bar {
+    margin-top: 5.618em;
+    background-color: var(--primary);
+}
+.manage-bar h1 {
+    color: var(--secondary);
+}
+.redirect-place {
+    margin: 1.618em;
+    padding: 0.618em;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--terciary);
+    border: 2px solid var(--secondary);
+    border-radius: var(--border-radius);
+}
+.redirect-place a {
+    border: 1.2px solid var(--secondary);
+    border-radius: var(--border-radius);
+    background-color: var(--primary);
+    padding: 0.618em;
+}
+.redirect-place a:hover {
+    scale: 0.95;
+    transition: 0.18s ease-in-out;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+.card-button {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.425em;
+}
+.button {
+    padding: 6.8px;
+    border: 1.2px solid var(--secondary);
+    border-radius: var(--border-radius);
+}
+.modify-button {
+    background-color: darkolivegreen;
+}
+.delete-button {
+    background-color: firebrick;
+    cursor: pointer;
+}
+.go-back {
+    margin: 1.618em;
+}
+.go-back:hover {
+    scale: 0.98;
+    background-color: var(--secondary);
+    color: var(--primary);
+    transition: 0.2s ease-in-out;
+}
+/* admin/users */
+.users-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--terciary);
+    border: 1.2px solid var(--secondary);
+    border-radius: var(--border-radius);
+}
+.AU {
+    margin: 1.9em 0 0.618em;
+    color: var(--secondary);
+    text-align: center;
+}
+.user-card {
+    width: 30%;
+    margin: 0.618em;
+    border: 1px solid var(--secondary);
+    border-radius: var(--border-radius);
+}
+.user-card h3, h4, p {
+    margin: 0.618em;
+    color: var(--secondary);
+    text-align: center;
+}
+.root-user {
+    background-color: rgba(180, 20, 52, 0.589);
+}
+.classic-user {
+    background-color: var(--primary);
 }
