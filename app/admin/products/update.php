@@ -38,7 +38,7 @@ if (!$product) {
         if ($_FILES['image']['name'] === '') {
             unset($_FILES['image']);
         }
-        
+
         if (isset($_FILES['image'])) {
             if ($_FILES['image']['size'] < 10000000 && $_FILES['image']['error'] === 0) {
 
@@ -66,9 +66,14 @@ if (!$product) {
         if (updateProduct($nom, $taille, $prix, $dispo, $imagePath, $css_class, $categorie_id, $product['id'])) {
             $_SESSION['message']['success'] = "Produit ajouté avec succès.";
 
+            $moveTarget = '/app' . $rootImages . $product['image_path'];
+            if ($imagePath !== $product['image_path'] && file_exists($moveTarget)) {
+                rename($moveTarget, '/app/assets/bin/$product[image_path]');
+            }
+
             header("Location:$rootUrl/admin/products");
         } else {
-            $errorMessage = isset($errorMessage) ? $errorMessage : "Une erreur est survenue lors de  l'ajout, veuillez réessayer.";
+            $errorMessage = isset($errorMessage) ? $errorMessage : "Une erreur est survenue lors de l'ajout, veuillez réessayer.";
         }
     }
 } else {
@@ -86,7 +91,7 @@ if (!$product) {
 </head>
 
 <body>
-    <!-- <?php include_once($rootTemplates . 'header.php'); ?> -->
+    <?php include_once($rootTemplates . 'header.php'); ?>
     <main>
         <section>
             <div class="container">

@@ -57,11 +57,11 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
                         <div class="product-card <?= $product['dispo'] === 'true' ? 'dispo':'not-avail'; ?>">
                             <div class="product-text">
                                 <img src="<?= $rootImages . $product['image_path']; ?>" alt="">
-                                <h4><b>Nom</b> : <br><?= $product['nom']; ?></h4>
-                                <p><b>Taille</b> : <br><?= $product['taille']; ?></p>
-                                <p><b>Prix</b> : <?= $product['prix']; ?>€</p>
-                                <p><b>ID</b> : <?= $product['id']; ?></p>
-                                <p><b>ID de catégorie</b> : <?= $product['categorie_id']; ?></p>
+                                <h4><b>Nom</b> : <br><?= strip_tags($product['nom']); ?></h4>
+                                <p><b>Taille</b> : <br><?= strip_tags($product['taille']); ?></p>
+                                <p><b>Prix</b> : <?= strip_tags($product['prix']); ?>€</p>
+                                <p><b>ID</b> : <?= strip_tags($product['id']); ?></p>
+                                <p><b>ID de catégorie</b> : <?= strip_tags($product['categorie_id']); ?></p>
                             </div>
                             <div class="card-button">
                                 <a href="<?= "$rootUrl/admin/products/update.php?id=$product[id]" ?>"

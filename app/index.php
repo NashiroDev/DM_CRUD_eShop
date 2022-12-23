@@ -49,15 +49,15 @@ include_once('./requests/products.php');
                 </div>
             </div>
             <?php foreach (getAllAvailable() as $listOfItem) : ?>
-                <div class="container <?= $listOfItem[0]['css_class'] ?>">
+                <div class="container <?= $listOfItem[0]['css_class']; ?>">
                     <?php foreach ($listOfItem as $item) : ?>
                         <div class="card">
                             <div class="card-image">
                                 <img src="<?= $rootImages . $item['image_path'] ?>" alt="">
                             </div>
                             <div class="card-text">
-                                <h3><?= $item['nom'] ?></h3>
-                                <p>Taille : <?= "$item[taille] // Prix : $item[prix]" ?>€</p>
+                                <h3><?= strip_tags($item['nom']); ?></h3>
+                                <p>Taille : <?= strip_tags("$item[taille] // Prix : $item[prix]"); ?>€</p>
                             </div>
                             <button>Ajouter au panier</button>
                         </div>

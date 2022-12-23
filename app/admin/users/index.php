@@ -36,9 +36,9 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
                     <?php foreach (getAllUsers() as $user) : ?>
                         <div class="user-card <?= in_array('ROOT_USER', json_decode($user['roles'])) ? 'root-user' : 'classic-user'; ?>">
                             <div class="user-text">
-                                <h3><b>Nom complet</b> : <br><?= "$user[prenom] $user[nom]"; ?></h3>
+                                <h3><b>Nom complet</b> : <br><?= strip_tags("$user[prenom] $user[nom]"); ?></h3>
                                 <h4><b>Email</b> : <br><?= strip_tags($user['email']); ?></h4>
-                                <p><b>ID</b> : <?= $user['id']; ?></p>
+                                <p><b>ID</b> : <?= strip_tags($user['id']); ?></p>
                             </div>
                             <div class="card-button">
                                 <a href="<?= "$rootUrl/admin/users/update.php?id=$user[id]" ?>"
