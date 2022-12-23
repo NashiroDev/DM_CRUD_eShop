@@ -3,13 +3,7 @@
 include_once('./conf/variables.php');
 include_once('./requests/products.php');
 
-$listOfArray = getAll();
-var_dump($_SESSION);
-        
-// Toggle boutons ?
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +35,7 @@ var_dump($_SESSION);
         <section>
             <div class="container">
                 <div class="section-title" id="browse">
-                    <h1>SÉLÉCTIONNEZ UNE CATÉGORIE</h1>
+                    <h1>SÉLÉCTIONNEZ VOS CATÉGORIES :</h1>
                 </div>
                 <div class="select-section">
                     <ul class="section-list">
@@ -54,16 +48,16 @@ var_dump($_SESSION);
                     </ul>
                 </div>
             </div>
-            <?php foreach ($listOfArray as $listOfItem) : ?>
-                <div class="container <?= $listOfItem[0]['css_class'] ?>">
+            <?php foreach (getAllAvailable() as $listOfItem) : ?>
+                <div class="container <?= $listOfItem[0]['css_class']; ?>">
                     <?php foreach ($listOfItem as $item) : ?>
                         <div class="card">
                             <div class="card-image">
                                 <img src="<?= $rootImages . $item['image_path'] ?>" alt="">
                             </div>
                             <div class="card-text">
-                                <h3><?= $item['nom'] ?></h3>
-                                <p>Taille : <?= "$item[taille] // Prix : $item[prix]" ?>€</p>
+                                <h3><?= strip_tags($item['nom']); ?></h3>
+                                <p>Taille : <?= strip_tags("$item[taille] // Prix : $item[prix]"); ?>€</p>
                             </div>
                             <button>Ajouter au panier</button>
                         </div>

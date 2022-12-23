@@ -8,7 +8,7 @@ include_once('/app/conf/mysql.php');
  * @param integer $category
  * @return array|boolean
  */
-function getAllAvailableProductsByCategory(int $category) : array|bool
+function getAvailableProductsByCategory(int $category) : array|bool
 {
     global $db;
 
@@ -26,7 +26,7 @@ function getAllAvailableProductsByCategory(int $category) : array|bool
  *
  * @return array 
  */
-function getAll() : array
+function getAllAvailable() : array
 {
     $sectionList = ['t-shirts', 'pulls', 'Pantalons', 'sous-vêtements', 'chaussetes', 'chaussures'];
     $fullAvailableProducts = [];
@@ -34,11 +34,141 @@ function getAll() : array
     $count = 1;
     foreach ($sectionList as $section) {
 
-        if (getAllAvailableProductsByCategory($count)) {
-            $fullAvailableProducts[$section] = getAllAvailableProductsByCategory($count);
+        if (getAvailableProductsByCategory($count)) {
+            $fullAvailableProducts[$section] = getAvailableProductsByCategory($count);
         }
         $count += 1;
     }
 
     return $fullAvailableProducts;
+}
+
+/**
+ * Récupère tout les produits présent en db
+ *
+ * @return array
+ */
+function getAllProducts() : array
+{
+    global $db;
+    
+    $query = 'SELECT id, nom, taille, prix, dispo, image_path, categorie_id FROM produits ORDER BY categorie_id ASC';
+    $sqlStatement = $db->prepare($query);
+    $sqlStatement->execute();
+
+    return $sqlStatement->fetchAll();
+}
+
+/**
+ * On ajoute en db un nouveau produit
+ *
+ * @param string $nom
+ * @param string $taille
+ * @param float $prix
+ * @param string $dispo
+ * @param string $image_path
+ * @param string $css_class
+ * @param integer $categorie_id
+ * @return boolean
+ */
+function createProduct(string $nom, string $taille, float $prix, string $dispo, string $image_path, string $css_class, int $categorie_id): bool {
+
+    global $db;
+
+    try {
+        $query = 'INSERT INTO produits (nom, taille, prix, dispo, image_path, css_class, categorie_id) VALUE (:nom, :taille, :prix, :dispo, :image_path, :css_class, :categorie_id)';
+        $sqlStatement =  $db->prepare($query);
+        $sqlStatement->execute([
+            'nom' => $nom,
+            'taille' => $taille,
+            'prix' => $prix,
+            'dispo'  => $dispo,
+            'image_path' => $image_path,
+            'css_class' => $css_class,
+            'categorie_id' => $categorie_id,
+        ]);
+    } catch (PDOException $e) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Supprime un produit en db via l'id
+ *
+ * @param integer $id
+ * @return boolean
+ */
+function deleteProduct(int $id): bool
+{
+    global $db;
+
+    try {
+        $query = 'DELETE FROM produits WHERE id = :id';
+        $sqlStatement = $db->prepare($query);
+        $sqlStatement->execute(['id' => $id]);
+
+    } catch (PDOException $e) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Récupère les données  d'un produit grace à son id
+ *
+ * @param integer|null $id
+ * @return array|boolean
+ */
+function  getProductById(?int $id): array|bool
+{
+    global $db;
+
+    try {
+        $query = 'SELECT * FROM produits WHERE id = :id';
+        $sqlStatement=$db->prepare($query);
+        $sqlStatement->execute(['id' => $id]);
+
+    } catch (PDOException $e) {
+        return false;
+    }
+
+    return $sqlStatement->fetch();
+}
+
+/**
+ * Met à jour les information d'un produit en db via l'id
+ *
+ * @param string $nom
+ * @param string $taille
+ * @param float $prix
+ * @param string $dispo
+ * @param string $image_path
+ * @param string $css_class
+ * @param integer $categorie_id
+ * @param integer $id
+ * @return boolean
+ */
+function updateProduct(string $nom, string $taille, float $prix, string $dispo, string $image_path, string $css_class, int $categorie_id, int $id): bool
+{
+    global $db;
+
+    try {
+        $query = 'UPDATE produits SET nom = :nom, taille = :taille, prix = :prix, dispo = :dispo, image_path = :image_path, css_class = :css_class, categorie_id = :categorie_id WHERE id = :id';
+        $sqlStatement = $db->prepare($query);
+        $sqlStatement->execute([
+            'nom' => $nom,
+            'taille' => $taille,
+            'prix' => $prix,
+            'dispo' => $dispo,
+            'image_path' => $image_path,
+            'css_class' => $css_class,
+            'categorie_id' => $categorie_id,
+            'id' => $id,
+        ]);
+
+    } catch (PDOException $e) {
+        return false;
+    }
+    return true;
 }
