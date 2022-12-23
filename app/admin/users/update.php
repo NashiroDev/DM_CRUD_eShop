@@ -61,9 +61,8 @@ if (!$user) {
     <main>
         <section>
             <div class="container">
-                <h1 class="AU">Mettre a jour utilisateur n°<?= $_GET['id'] ?></h1>
                 <?php if (isset($errorMessage)) : ?>
-                    <div class="alert alert-danger">
+                    <div class="notify alert-danger">
                         <p>
                             <?= $errorMessage; ?>
                         </p>
@@ -71,22 +70,23 @@ if (!$user) {
                 <?php endif; ?>
                 <div class="form-page">
                     <div class="form-content">
+                        <h2>Mettre a jour utilisateur n°<?= $_GET['id']; ?></h2>
                         <form action="<?= $_SERVER['REQUEST_URI']; ?>" class="form form-register" method="POST" enctype="multipart/form-data">
                             <div class="group">
                                 <label for="prenom">Prenom :</label>
-                                <input type="text" name="prenom" placeholder="<?= $user['prenom'] ?>" value="<?= $user['prenom'] ?>" required>
+                                <input type="text" name="prenom" placeholder="<?= strip_tags($user['prenom']); ?>" value="<?= strip_tags($user['prenom']); ?>" required>
                                 <label for="nom">Nom :</label>
-                                <input type="text" name="nom" placeholder="<?= $user['nom'] ?>" value="<?= $user['nom'] ?>" required>
+                                <input type="text" name="nom" placeholder="<?= strip_tags($user['nom']); ?>" value="<?= strip_tags($user['nom']); ?>" required>
                             </div>
                             <div class="group">
                                 <label for="email">Adresse email :</label>
-                                <input type="email" name="email" placeholder="<?= $user['email'] ?>" value="<?= $user['email'] ?>" required>
+                                <input type="email" name="email" placeholder="<?= strip_tags($user['email']); ?>" value="<?= strip_tags($user['email']); ?>" required>
                             </div>
                             <div class="group">
                                 <label for="roles[]">Rôle utilisateur :</label>
-                                <input type="checkbox" name="roles[]" <?= in_array('CLASSIC_USER', json_decode($user['roles'])) ? 'checked' : null; ?> value="CLASSIC_USER">
+                                <input type="checkbox" name="roles[]" <?= strip_tags(in_array('CLASSIC_USER', json_decode($user['roles'])) ? 'checked' : null); ?> value="CLASSIC_USER">
                                 <label for="roles[]">Rôle administrateur :</label>
-                                <input type="checkbox" name="roles[]" <?= in_array('ROOT_USER', json_decode($user['roles'])) ? 'checked' : null; ?> value="ROOT_USER">
+                                <input type="checkbox" name="roles[]" <?= strip_tags(in_array('ROOT_USER', json_decode($user['roles'])) ? 'checked' : null); ?> value="ROOT_USER">
                             </div>
                             <input type="hidden" name='token' value="<?= $_SESSION['token'] ?>">
                             <button type="submit" class="submit-button">Appliquer les changements</button>

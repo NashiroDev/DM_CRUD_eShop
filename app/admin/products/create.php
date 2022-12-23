@@ -5,23 +5,6 @@ session_start();
 include_once('/app/conf/variables.php');
 include_once($rootPath . 'requests/products.php');
 
-$getCSSClass = [
-    1 => 'ts',
-    2 => 'pu',
-    3 => 'pa',
-    4 => 'so',
-    5 => 'cht',
-    6 => 'chs',
-];
-$getDirectory = [
-    1 => 'tshirt/',
-    2 => 'pull/',
-    3 => 'pantalon/',
-    4 => 'sous-vetement/',
-    5 => 'chaussette/',
-    6 => 'chaussure/',
-];
-
 if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRENT_USER']['roles'])) {
     header("Location:$rootUrl");
 } elseif (
@@ -42,7 +25,7 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
         $prix = filter_input(INPUT_POST, 'prix', FILTER_SANITIZE_SPECIAL_CHARS);
         $dispo = (filter_input(INPUT_POST, 'dispo', FILTER_SANITIZE_SPECIAL_CHARS) === 'true') ? 'true' : 'false';
         $categorie_id = filter_input(INPUT_POST, 'categorie_id', FILTER_SANITIZE_SPECIAL_CHARS);
-        $css_class = $getCSSClass[$categorie_id];
+        $css_class = $_SESSION['getCSSClass'][$categorie_id];
 
         /** Image part */
         if ($_FILES['image']['size'] < 10000000 && $_FILES['image']['error'] === 0) {
@@ -53,7 +36,7 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
             if (in_array($extension, $extensionAllowed)) {
 
                 $imageUploadName = uniqid() . '.' . $extension;
-                $imagePath = $getDirectory[$categorie_id] . $imageUploadName;
+                $imagePath = $_SESSION['getDirectory'][$categorie_id] . $imageUploadName;
                 $target = '/app' . $rootImages . $imagePath;
 
                 move_uploaded_file($_FILES['image']['tmp_name'], $target);
@@ -73,7 +56,6 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
             $errorMessage = isset($errorMessage) ? $errorMessage : "Une erreur est survenue lors de  l'ajout, veuillez réessayer.";
         }
     }
-
 } else {
     $_SESSION['token'] = bin2hex(random_bytes(35));
 }
@@ -89,7 +71,7 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
 </head>
 
 <body>
-    <!-- <?php include_once($rootTemplates . 'header.php') ?> -->
+    <?php include_once($rootTemplates . 'header.php') ?>
     <main>
         <section>
             <div class="container">

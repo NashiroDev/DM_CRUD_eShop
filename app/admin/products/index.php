@@ -5,6 +5,23 @@ session_start();
 include_once('/app/conf/variables.php');
 include_once($rootPath.'/requests/products.php');
 
+$_SESSION['getCSSClass'] = [
+    1 => 'ts',
+    2 => 'pu',
+    3 => 'pa',
+    4 => 'so',
+    5 => 'cht',
+    6 => 'chs',
+];
+$_SESSION['getDirectory'] = [
+    1 => 'tshirt/',
+    2 => 'pull/',
+    3 => 'pantalon/',
+    4 => 'sous-vetement/',
+    5 => 'chaussette/',
+    6 => 'chaussure/',
+];
+
 if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRENT_USER']['roles'])) {
     header("Location:$rootUrl");
 } else {
@@ -39,14 +56,13 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
                     <?php foreach (getAllProducts() as $product) : ?>
                         <div class="product-card <?= $product['dispo'] === 'true' ? 'dispo':'not-avail'; ?>">
                             <div class="product-text">
-                                <img src="<?= $rootImages . $product['image_path'] ?>" alt="fezfzefzefzef">
-                                <h3><b>Nom</b> : <br><?= $product['nom']; ?></h3>
-                                <h4><b>Taille</b> : <br><?= $product['taille']; ?></h4>
+                                <img src="<?= $rootImages . $product['image_path']; ?>" alt="">
+                                <h4><b>Nom</b> : <br><?= $product['nom']; ?></h4>
+                                <p><b>Taille</b> : <br><?= $product['taille']; ?></p>
                                 <p><b>Prix</b> : <?= $product['prix']; ?>€</p>
                                 <p><b>ID</b> : <?= $product['id']; ?></p>
                                 <p><b>ID de catégorie</b> : <?= $product['categorie_id']; ?></p>
                             </div>
-
                             <div class="card-button">
                                 <a href="<?= "$rootUrl/admin/products/update.php?id=$product[id]" ?>"
                                     class="button modify-button">MODIFIER</a>

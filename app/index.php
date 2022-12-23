@@ -35,7 +35,7 @@ include_once('./requests/products.php');
         <section>
             <div class="container">
                 <div class="section-title" id="browse">
-                    <h1>SÉLÉCTIONNEZ UNE CATÉGORIE</h1>
+                    <h1>SÉLÉCTIONNEZ VOS CATÉGORIES :</h1>
                 </div>
                 <div class="select-section">
                     <ul class="section-list">
