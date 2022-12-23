@@ -17,7 +17,7 @@ $_SESSION['getDirectory'] = [
     1 => 'tshirt/',
     2 => 'pull/',
     3 => 'pantalon/',
-    4 => 'sous-vetement/',
+    4 => 'sous_vetement/',
     5 => 'chaussette/',
     6 => 'chaussure/',
 ];
@@ -45,6 +45,7 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
                     <h1 class="AU">Administration des produits</h1>
                     <a href="<?= "$rootUrl/admin/products/create.php" ?>" class="button create-button">AJOUTER UN PRODUIT</a>
                 </div>
+                <a href="<?= "$rootUrl/admin/"; ?>" class="button go-back">Retour</a>
                 <?php if (isset($_SESSION['message']['error'])) : ?>
                     <div class="notify alert-danger"><?= $_SESSION['message']['error']; ?></div>
                     <?php unset($_SESSION['message']['error']); ?>

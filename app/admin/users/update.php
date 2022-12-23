@@ -84,9 +84,9 @@ if (!$user) {
                             </div>
                             <div class="group">
                                 <label for="roles[]">Rôle utilisateur :</label>
-                                <input type="checkbox" name="roles[]" <?= strip_tags(in_array('CLASSIC_USER', json_decode($user['roles'])) ? 'checked' : null); ?> value="CLASSIC_USER">
+                                <input type="checkbox" name="roles[]" <?= in_array('CLASSIC_USER', json_decode($user['roles'])) ? 'checked' : null; ?> value="CLASSIC_USER">
                                 <label for="roles[]">Rôle administrateur :</label>
-                                <input type="checkbox" name="roles[]" <?= strip_tags(in_array('ROOT_USER', json_decode($user['roles'])) ? 'checked' : null); ?> value="ROOT_USER">
+                                <input type="checkbox" name="roles[]" <?= in_array('ROOT_USER', json_decode($user['roles'])) ? 'checked' : null; ?> value="ROOT_USER">
                             </div>
                             <input type="hidden" name='token' value="<?= $_SESSION['token'] ?>">
                             <button type="submit" class="submit-button">Appliquer les changements</button>

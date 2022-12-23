@@ -66,10 +66,11 @@ if (!$product) {
         if (updateProduct($nom, $taille, $prix, $dispo, $imagePath, $css_class, $categorie_id, $product['id'])) {
             $_SESSION['message']['success'] = "Produit ajouté avec succès.";
 
-            $moveTarget = '/app' . $rootImages . $product['image_path'];
-            if ($imagePath !== $product['image_path'] && file_exists($moveTarget)) {
-                rename($moveTarget, '/app/assets/bin/$product[image_path]');
-            }
+            // NEED PERMISSION ELSE BUG
+            // $moveTarget = '/app' . $rootImages . $product['image_path'];
+            // if ($imagePath !== $product['image_path'] && file_exists($moveTarget)) {
+            //     rename($moveTarget, '/app/assets/bin/$product[image_path]');
+            // }
 
             header("Location:$rootUrl/admin/products");
         } else {
@@ -143,6 +144,7 @@ if (!$product) {
                     </div>
                 </div>
             </div>
+            <a href="<?= "$rootUrl/admin/products"; ?>" class="button go-back">Retour à la liste</a>
         </section>
     </main>
     <?php include_once($rootTemplates . 'footer.php'); ?>

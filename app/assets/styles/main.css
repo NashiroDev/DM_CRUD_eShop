@@ -372,6 +372,8 @@ input {
 }
 .go-back {
     margin: 1.618em;
+    position: relative;
+    background-color: var(--primary);
 }
 .go-back:hover {
     scale: 0.98;

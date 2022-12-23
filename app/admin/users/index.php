@@ -25,6 +25,7 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
         <section>
             <div class="container">
                 <h1 class="AU">Administration des utilisateurs</h1>
+                <a href="<?= "$rootUrl/admin/"; ?>" class="button go-back">Retour</a>
                 <?php if (isset($_SESSION['message']['error'])) : ?>
                     <div class="notify alert-danger"><?= $_SESSION['message']['error']; ?></div>
                     <?php unset($_SESSION['message']['error']); ?>
