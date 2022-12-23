@@ -20,7 +20,7 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
     <title>Administration utilisateurs</title>
 </head>
 <body>
-    <?php include_once($rootTemplates.'/header.php'); ?>
+    <?php include_once($rootTemplates.'header.php'); ?>
     <main>
         <section>
             <div class="container">
@@ -34,11 +34,11 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
                 <?php endif; ?>
                 <div class="users-list">
                     <?php foreach (getAllUsers() as $user) : ?>
-                        <div class="user-card <?= in_array('ROOT_USER', json_decode($user['roles'])) ? 'root-user' : 'classic-user' ?>">
+                        <div class="user-card <?= in_array('ROOT_USER', json_decode($user['roles'])) ? 'root-user' : 'classic-user'; ?>">
                             <div class="user-text">
-                                <h3><b>Nom complet</b> : <br><?= "$user[prenom] $user[nom]" ?></h3>
-                                <h4><b>Email</b> : <br><?= strip_tags($user['email'])?></h4>
-                                <p><b>ID</b> : <?= $user['id'] ?></p>
+                                <h3><b>Nom complet</b> : <br><?= "$user[prenom] $user[nom]"; ?></h3>
+                                <h4><b>Email</b> : <br><?= strip_tags($user['email']); ?></h4>
+                                <p><b>ID</b> : <?= $user['id']; ?></p>
                             </div>
                             <div class="card-button">
                                 <a href="<?= "$rootUrl/admin/users/update.php?id=$user[id]" ?>"
@@ -56,6 +56,6 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
             </div>
         </section>
     </main>
-    <?php include_once($rootTemplates.'/footer.php'); ?>
+    <?php include_once($rootTemplates.'footer.php'); ?>
 </body>
 </html>

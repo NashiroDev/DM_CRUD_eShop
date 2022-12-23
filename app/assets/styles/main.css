@@ -355,12 +355,20 @@ input {
     border: 1.2px solid var(--secondary);
     border-radius: var(--border-radius);
 }
+.button:hover {
+    scale: 1.1;
+    transition: 0.22s ease-in-out;
+}
 .modify-button {
     background-color: darkolivegreen;
 }
 .delete-button {
     background-color: firebrick;
     cursor: pointer;
+}
+.create-button {
+    background-color: dodgerblue;
+    max-height: 2em;
 }
 .go-back {
     margin: 1.618em;
@@ -371,8 +379,9 @@ input {
     color: var(--primary);
     transition: 0.2s ease-in-out;
 }
-/* admin/users */
-.users-list {
+/* admin/users & admin/products */
+.users-list,
+.products-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -385,7 +394,8 @@ input {
     color: var(--secondary);
     text-align: center;
 }
-.user-card {
+.user-card,
+.product-card {
     width: 30%;
     margin: 0.618em;
     border: 1px solid var(--secondary);
@@ -396,9 +406,34 @@ input {
     color: var(--secondary);
     text-align: center;
 }
-.root-user {
+.product-card h3, h4, p {
+    margin: 0.618em;
+    color: var(--secondary);
+    text-align: center;
+}
+.product-text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.product-text img {
+    margin: 0.5em;
+    width: 70px;
+    height: 70px;
+    border: 1px solid var(--secondary);
+    border-radius: 50%;
+}
+.root-user,
+.not-avail {
     background-color: rgba(180, 20, 52, 0.589);
 }
-.classic-user {
+.classic-user,
+.dispo {
     background-color: var(--primary);
+}
+.hold {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

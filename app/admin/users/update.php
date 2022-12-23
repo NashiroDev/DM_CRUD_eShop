@@ -57,7 +57,7 @@ if (!$user) {
 </head>
 
 <body>
-    <?php include_once($rootTemplates . '/header.php'); ?>
+    <?php include_once($rootTemplates . 'header.php'); ?>
     <main>
         <section>
             <div class="container">
@@ -97,7 +97,7 @@ if (!$user) {
             <a href="<?= "$rootUrl/admin/users"; ?>" class="button go-back">Retour à la liste</a>
         </section>
     </main>
-    <?php include_once($rootTemplates . '/footer.php'); ?>
+    <?php include_once($rootTemplates.'footer.php'); ?>
 </body>
 
 </html>

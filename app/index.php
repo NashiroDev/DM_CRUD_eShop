@@ -3,8 +3,6 @@
 include_once('./conf/variables.php');
 include_once('./requests/products.php');
 
-$listOfArray = getAll();
-
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +48,7 @@ $listOfArray = getAll();
                     </ul>
                 </div>
             </div>
-            <?php foreach ($listOfArray as $listOfItem) : ?>
+            <?php foreach (getAllAvailable() as $listOfItem) : ?>
                 <div class="container <?= $listOfItem[0]['css_class'] ?>">
                     <?php foreach ($listOfItem as $item) : ?>
                         <div class="card">

@@ -20,7 +20,7 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
 </head>
 
 <body>
-    <?php include_once($rootTemplates . 'header.php'); ?> 
+    <?php include_once($rootTemplates.'header.php'); ?> 
     <main>
         <section>
             <div class="container">
@@ -34,6 +34,6 @@ if (!isset($_SESSION['CURRENT_USER']) || !in_array('ROOT_USER', $_SESSION['CURRE
             </div>
         </section>
     </main>
-    <?php include_once($rootTemplates . 'footer.php'); ?>
+    <?php include_once($rootTemplates.'footer.php'); ?>
 </body>
 </html>
